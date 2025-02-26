@@ -1,4 +1,4 @@
-function Sys.min 0
+function Sys.min 2
     pop temp 0
     pop temp 1
     push temp 0
@@ -17,7 +17,7 @@ function Sys.init 0
     push constant 2
     call Sys.min 2
 
-function Sys.max 0
+function Sys.max 2
     pop temp 0
     pop temp 1
     push temp 0
