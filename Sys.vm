@@ -1,15 +1,79 @@
 function Sys.min 0
-    pop temp 0
-    pop temp 1
-    push temp 0
-    push temp 1
-    lt
-    if-goto min_found
-    pop temp 0
-    push temp 1
+    pop temp 0        
+    pop temp 1        
+    push temp 0       
+    push temp 1       
+    lt                
+    if-goto min_found 
+
+    pop temp 0        
+    push temp 1       
     return
 
 (min_found)
-    pop temp 0
-    push temp 0
+    pop temp 0        
+    push temp 0       
+    return
+
+function Sys.max 0
+    pop temp 0        
+    pop temp 1        
+    push temp 0       
+    push temp 1       
+    gt                
+    if-goto max_found 
+
+    pop temp 0        
+    push temp 1       
+    return
+
+(max_found)
+    pop temp 0        
+    push temp 0       
+    return
+
+function Sys.range 2
+    pop temp 1        
+    pop temp 0        
+
+    push temp 0       
+    push constant 0   
+    add               
+    pop pointer 0     
+
+    push pointer 0    
+    call Sys.min 2    
+
+    push pointer 0    
+    call Sys.max 2    
+
+    push temp 1       
+    push constant 1   
+    sub
+    label loop_start
+    push temp 1
+    if-goto loop_end  
+
+    push temp 0       
+    push constant 1   
+    add
+    pop pointer 1     
+
+    push pointer 1    
+    call Sys.min 2    
+
+    push pointer 1    
+    call Sys.max 2    
+
+    push temp 1
+    push constant 1
+    sub
+    pop temp 1        
+    goto loop_start   
+
+    label loop_end
+
+    push pointer 0    
+    push pointer 1    
+    sub               
     return
