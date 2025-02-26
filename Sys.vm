@@ -1,23 +1,25 @@
 function Sys.min 0
-pop argument 0
-pop argument 1
+pop temp 0
+pop temp 1
+push temp 0
+push temp 1
 lt
 if-goto small
-push argument 1
-goto END
+push temp 1
+return
 label small
-push argument 0
-label END
+push temp 0
 return
 
 function Sys.max 0
-pop argument 0
-pop argument 1
+pop temp 0
+pop temp 1
+push temp 0
+push temp 1
 lt
 if-goto big
-push argument 0
-goto END1
+push temp 0
+return
 label big
-push argument 1
-label END1
-return 
+push temp 1
+return
