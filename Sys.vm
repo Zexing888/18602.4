@@ -12,6 +12,11 @@ label small
     push temp 0
     return
 
+function Sys.init 0
+push constant 4
+push constant 2
+call Sys.min 2
+
 function Sys.max 0
     pop temp 0
     pop temp 1
@@ -25,6 +30,11 @@ function Sys.max 0
 label big
     push temp 1
     return
+
+function Sys.init 0
+push constant 4
+push constant 2
+call Sys.max 2
 
 function Sys.range 2
     pop local 1
