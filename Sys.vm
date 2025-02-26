@@ -1,40 +1,43 @@
 function Sys.min 0
-pop temp 0
-pop temp 1
-push temp 0
-push temp 1
-lt
-if-goto small
-push temp 1
-return
+    pop temp 0
+    pop temp 1
+    push temp 0
+    push temp 1
+    lt
+    if-goto small
+    push temp 1
+    return
+
 label small
-push temp 0
-return
+    push temp 0
+    return
 
 function Sys.max 0
-pop temp 0
-pop temp 1
-push temp 0
-push temp 1
-lt
-if-goto big
-push temp 0
-return
+    pop temp 0
+    pop temp 1
+    push temp 0
+    push temp 1
+    lt
+    if-goto big
+    push temp 0
+    return
+
 label big
-push temp 1
-return
+    push temp 1
+    return
 
 function Sys.range 2
-pop local 1
-pop local 0
-push local 0
-push local 1
-call Sys.min 2
-pop temp 0
-push local 0
-push local 1
-call Sys.max 2
-pop temp 1
-pop temp 0
-sub
-return
+    pop local 1
+    pop local 0
+    push local 0
+    push local 1
+    call Sys.min 2
+    pop temp 0
+    push local 0
+    push local 1
+    call Sys.max 2
+    pop temp 1
+    pop temp 0
+    sub
+    return
+
