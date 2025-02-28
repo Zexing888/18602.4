@@ -1,53 +1,74 @@
-function Sys.min 2
-    pop temp 0
-    pop temp 1
-    push temp 0
-    push temp 1
-    lt
-    if-goto small
-    push temp 1
-    return
+function Sys.min 0
+push argument 0
+push argument 1
+lt
+if-goto ARG0_IS_LESS
+push argument 1
+goto CONTINUE
+label ARG0_IS_LESS
+push argument 0
+label CONTINUE
+return
 
-label small
-    push temp 0
-    return
+function Sys.max 0
+push argument 0
+push argument 1
+gt
+if-goto ARG0_IS_GREATER
+push argument 1
+goto CONTINUE
+label ARG0_IS_GREATER
+push argument 0
+label CONTINUE
+return
+
+function Sys.range 4
+push argument 1
+if-goto CONT
+push constant 0
+return
+label CONT
+push argument 0
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+pop local 1
+push constant 1
+pop local 2
+label LOOP_START
+push local 2
+push argument 1
+lt
+if-goto LOOP_BODY
+goto LOOP_END
+label LOOP_BODY
+push argument 0
+push local 2
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 0
+push local 3
+call Sys.min 2
+pop local 0
+push local 1
+push local 3
+call Sys.max 2
+pop local 1
+push local 2
+push constant 1
+add
+pop local 2
+goto LOOP_START
+label LOOP_END
+push local 1
+push local 0
+sub
+return
 
 function Sys.init 0
-    push constant 4
-    push constant 2
-    call Sys.min 2
-
-function Sys.max 2
-    pop temp 0
-    pop temp 1
-    push temp 0
-    push temp 1
-    lt
-    if-goto big
-    push temp 0
-    return
-
-label big
-    push temp 1
-    return
-
-function Sys.init 0
-    push constant 4
-    push constant 2
-    call Sys.max 2
-
-function Sys.range 2
-    pop local 1
-    pop local 0
-    push local 0
-    push local 1
-    call Sys.min 2
-    pop temp 0
-    push local 0
-    push local 1
-    call Sys.max 2
-    pop temp 1
-    pop temp 0
-    sub
-    return
-
+call Sys.range 2
+label WHILE
+goto WHILE
